@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var number_of_cards_to_gen : int = 10 
+@export var number_of_cards_to_gen : int = 100
 
 var card : Dictionary = {}
 var rng
@@ -14,6 +14,15 @@ var affinities : Array = [
 	"Spirit",
 	"None"
 ]
+
+var opposed_affinities : Dictionary = {
+	"Order" : "Chaos",
+	"Mind" : "Nature",
+	"Ambition" : "Spirit",
+	"Chaos" : "Order",
+	"Nature" : "Mind",
+	"Spirit" : "Ambition",
+}
 
 var soul_types : Dictionary = {
 	
@@ -121,7 +130,7 @@ func roll_for_card_affinity(card_affinity_roll_result):
 		7, 8:
 			var primary_affinity = roll_for_card_affinity(rnginator(6))
 			var secondary_affinity = roll_for_card_affinity(rnginator(6))
-			while primary_affinity["Primary Affinity"] == secondary_affinity["Primary Affinity"]:
+			while primary_affinity["Primary Affinity"] == secondary_affinity["Primary Affinity"] or opposed_affinities[primary_affinity["Primary Affinity"]] == secondary_affinity["Primary Affinity"]:
 				secondary_affinity = roll_for_card_affinity(rnginator(6))
 			return { "Primary Affinity" : str(primary_affinity["Primary Affinity"]),
 					 "Secondary Affinity" : str(secondary_affinity["Primary Affinity"])}
@@ -147,4 +156,3 @@ func roll_for_soul_type(soul_type_roll_result):
 			return {
 				"Primary Soul Type" : soul_types[card["Primary Affinity"]][card["Secondary Affinity"]],
 				"Secondary Soul Type" : secondary_soul_type}
-		
