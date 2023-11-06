@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dos4pg7e8o2as"]
+
+[ext_resource type="Script" path="res://ImageConstructor.gd" id="1_i6cpc"]
+
+[node name="ImageConstructor" type="Node2D"]
+script = ExtResource("1_i6cpc")
