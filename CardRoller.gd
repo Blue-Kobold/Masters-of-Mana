@@ -301,7 +301,7 @@ func generate_card(cardCount):
 	
 	var CardCollection = []
 	
-	for i in number_of_cards_to_gen:
+	for i in cardCount:
 		card.merge(roll_for_mana_cost(rnginator(6)))
 		card.merge(roll_for_card_affinity(rnginator(8)))
 		match roll_for_card_type(rnginator(2)):
