@@ -440,9 +440,9 @@ func roll_for_soul_stats(soul_stats_roll_result):
 		keywords.append(new_keyword)
 		number_of_bonuses -= 1
 	while number_of_drawbacks != 0:
-		var new_keyword = roll_for_drawbacks(rnginator(12))
+		var new_keyword = roll_for_drawbacks(rnginator(6))
 		while keywords.find(new_keyword) != -1:
-			new_keyword = roll_for_drawbacks(rnginator(12))
+			new_keyword = roll_for_drawbacks(rnginator(6))
 		keywords.append(new_keyword)
 		number_of_drawbacks -= 1
 	return { "Damage" : damage,
