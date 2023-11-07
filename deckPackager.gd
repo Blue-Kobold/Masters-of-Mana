@@ -72,8 +72,6 @@ func CreateDeck():
 	
 	var outputFile = FileAccess.open(("res://"+ deckName +"//CardGrid.json"),FileAccess.WRITE)
 	
-	print(JSON.stringify(targetDeck))
-	
 	outputFile.store_string(JSON.stringify(DeckDictionary,"   "))
 	
 	pass
