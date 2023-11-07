@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@export var number_of_cards_to_gen : int = 100
+@export var number_of_cards_to_gen : int = 60
 
 var deck = load(("res://Deck.gd"))
 var card = load("res://Card.gd")
@@ -19,7 +19,6 @@ func CreateDeck(cardCount):
 	
 	var GeneratedCards = Roller.generate_card(cardCount)
 	
-		
 	var DeckDictionary = {
 		"Gravity": 0.5,
 		"PlayArea": 0.5,
@@ -87,11 +86,10 @@ func CreateDeck(cardCount):
 	
 	var CardCollection = imgcon.GenerateCard(cardCount)
 	var ccString = "res://"+ deckName +"//CardGrid.png"
-	ccString = "C:\\Users\\Taelin\\Documents\\My Games\\Tabletop Simulator\\Saves\\Saved Objects\\MOM Testing Grounds\\Active Testing"+"//CardGrid.png"
 	CardCollection.img.save_png(ccString)
 	
 	DeckDictionary["ObjectStates"][0]["CustomDeck"]["6969"]["FaceURL"] = ccString
-	DeckDictionary["ObjectStates"][0]["CustomDeck"]["6969"]["BackURL"] = "C:\\Users\\Taelin\\Documents\\My Games\\Tabletop Simulator\\Saves\\Saved Objects\\MOM Testing Grounds\\Active Testing" + "//CardBack.png"
+	DeckDictionary["ObjectStates"][0]["CustomDeck"]["6969"]["BackURL"] = "res://textures/CardBack.png"
 	DeckDictionary["ObjectStates"][0]["CustomDeck"]["6969"]["NumHeight"] = CardCollection.cardHeight
 	DeckDictionary["ObjectStates"][0]["CustomDeck"]["6969"]["NumWidth"] = CardCollection.cardWidth
 	
@@ -102,8 +100,7 @@ func CreateDeck(cardCount):
 		
 		var _dir = DirAccess.make_dir_absolute("res://" + deckName)
 	
-	#var outputFile = FileAccess.open(("res://"+ deckName +"//CardGrid.json"),FileAccess.WRITE)
-	var outputFile = FileAccess.open(("C:\\Users\\Taelin\\Documents\\My Games\\Tabletop Simulator\\Saves\\Saved Objects\\MOM Testing Grounds\\Active Testing"+"//CardGrid.json"),FileAccess.WRITE)
+	var outputFile = FileAccess.open(("res://"+ deckName +"//CardGrid.json"),FileAccess.WRITE)
 	
 	outputFile.store_string(JSON.stringify(DeckDictionary,"   "))
 	
