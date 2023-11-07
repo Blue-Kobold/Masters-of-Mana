@@ -2,8 +2,8 @@ extends Node
 
 @export var cardCount : int = 60
 
-var cardFront = Image.load_from_file("res://textures/CardFront.png")
-var cardBack = Image.load_from_file("res://textures/CardBack.png")
+var cardFront = Image.load_from_file("res://textures/masters_of_mana_cardfront_v0.6.png")
+var cardBack = Image.load_from_file("res://textures/masters_of_mana_cardback_v1.png")
 
 var cardHeight = cardFront.get_height()
 var cardWidth = cardFront.get_width()
