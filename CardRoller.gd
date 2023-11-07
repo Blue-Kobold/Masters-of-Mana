@@ -8,6 +8,14 @@ var card : Dictionary = {}
 var rng : RandomNumberGenerator
 
 
+var rarity : Array = [
+	"Trinket",
+	"Wondrous",
+	"Ascendent",
+	"Relic"
+]
+
+
 var affinities : Array = [
 	"Order",
 	"Mind",
@@ -303,6 +311,7 @@ func generate_card(cardCount):
 	
 	for i in cardCount:
 		card.merge(roll_for_mana_cost(rnginator(6)))
+		card.merge(roll_for_rarity(rnginator(4)))
 		card.merge(roll_for_card_affinity(rnginator(8)))
 		match roll_for_card_type(rnginator(2)):
 			"Soul":
@@ -310,10 +319,15 @@ func generate_card(cardCount):
 				card.merge(roll_for_soul_type(rnginator(12)))
 				card.merge(roll_for_soul_stats(rnginator(8)))
 				for index in card["Mana Cost"]:
-					if index == 0:
+					if index > 0:
 						pass
 					else:
-						roll_for_mana_cost_bonuses(rnginator(6))
+						roll_for_mana_cost_and_rarity_bonuses(rnginator(6))
+				for index in rarity.find(card["Rarity"]):
+					if index > 0:
+						pass
+					else:
+						roll_for_mana_cost_and_rarity_bonuses(rnginator(6))
 			"Magic":
 				card.merge({"Card Type" : "Magic"})
 		print(str(card))
@@ -344,6 +358,16 @@ func roll_for_mana_cost(mana_cost_roll_result):
 		6:
 			return { "Mana Cost" : 3 }
 	
+func roll_for_rarity(rarity_roll_result):
+	match rarity_roll_result:
+		1:
+			return { "Rarity" : "Trinket" }
+		2:
+			return { "Rarity" : "Wondrous" }
+		3:
+			return { "Rarity" : "Ascendant" }
+		4:
+			return { "Rarity" : "Relic" }
 	
 func roll_for_card_affinity(card_affinity_roll_result):
 	match card_affinity_roll_result:
@@ -374,12 +398,13 @@ func roll_for_card_affinity(card_affinity_roll_result):
 					 "Secondary Affinity" : str(secondary_affinity["Primary Affinity"])}
 	
 	
-func roll_for_card_type(card_type_roll_result):
-	match card_type_roll_result:
-		1:
-			return "Soul"
-		2:
-			return "Magic"
+func roll_for_card_type(_card_type_roll_result):
+	return "Soul"
+	#match card_type_roll_result:
+		#1:
+			#return "Soul"
+		#2:
+			#return "Magic"
 					
 
 func roll_for_soul_type(soul_type_roll_result):
@@ -524,7 +549,7 @@ func roll_for_advanced_bonuses(advanced_roll_result):
 			return "Cleave"
 
 
-func roll_for_mana_cost_bonuses(mana_cost_bonus_roll):
+func roll_for_mana_cost_and_rarity_bonuses(mana_cost_bonus_roll):
 	match mana_cost_bonus_roll:
 		1:
 			card["Damage"] += 2
