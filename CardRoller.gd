@@ -294,26 +294,30 @@ var drawback_keywords_by_affinity : Dictionary = {
 
 
 func _ready():
+		generate_card(number_of_cards_to_gen)
+
+
+func generate_card(cardCount):
+	
+	var CardCollection = []
+	
 	for i in number_of_cards_to_gen:
-		generate_card()
+		card.merge(roll_for_mana_cost(rnginator(6)))
+		card.merge(roll_for_card_affinity(rnginator(8)))
+		match roll_for_card_type(rnginator(2)):
+			"Soul":
+				card.merge({"Card Type" : "Soul"})
+				card.merge(roll_for_soul_type(rnginator(12)))
+				card.merge(roll_for_soul_stats(rnginator(8)))
+			"Magic":
+				card.merge({"Card Type" : "Magic"})
+		print(str(card))
+		CardCollection.append(card.duplicate())
+		clear_card()
+	
+	return CardCollection
 
 
-func generate_card():
-	card.merge(roll_for_mana_cost(rnginator(6)))
-	card.merge(roll_for_card_affinity(rnginator(8)))
-	match roll_for_card_type(rnginator(2)):
-		"Soul":
-			card.merge({"Card Type" : "Soul"})
-			card.merge(roll_for_soul_type(rnginator(12)))
-			card.merge(roll_for_soul_stats(rnginator(8)))
-			print(str(card))
-			clear_card()
-		"Magic":
-			card.merge({"Card Type" : "Magic"})
-			print(str(card))
-			clear_card()
-	
-	
 func clear_card():
 	card.clear()
 	

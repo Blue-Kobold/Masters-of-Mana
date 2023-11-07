@@ -4,4 +4,4 @@
 
 [node name="DeckPackager" type="Node2D"]
 script = ExtResource("1_pr134")
-number_of_cards_to_gen = 41
+number_of_cards_to_gen = 30
