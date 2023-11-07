@@ -294,7 +294,7 @@ var drawback_keywords_by_affinity : Dictionary = {
 
 
 func _ready():
-		generate_card(number_of_cards_to_gen)
+	generate_card(number_of_cards_to_gen)
 
 
 func generate_card(cardCount):
@@ -309,6 +309,11 @@ func generate_card(cardCount):
 				card.merge({"Card Type" : "Soul"})
 				card.merge(roll_for_soul_type(rnginator(12)))
 				card.merge(roll_for_soul_stats(rnginator(8)))
+				for index in card["Mana Cost"]:
+					if index == 0:
+						pass
+					else:
+						roll_for_mana_cost_bonuses(rnginator(6))
 			"Magic":
 				card.merge({"Card Type" : "Magic"})
 		print(str(card))
@@ -331,13 +336,13 @@ func rnginator(dice_size):
 func roll_for_mana_cost(mana_cost_roll_result):
 	match mana_cost_roll_result:
 		1,2:
-			return { "Mana Cost" : "0" }
+			return { "Mana Cost" : 0 }
 		3,4:
-			return { "Mana Cost" : "1" }
+			return { "Mana Cost" : 1 }
 		5:
-			return { "Mana Cost" : "2" }
+			return { "Mana Cost" : 2 }
 		6:
-			return { "Mana Cost" : "3" }
+			return { "Mana Cost" : 3 }
 	
 	
 func roll_for_card_affinity(card_affinity_roll_result):
@@ -401,7 +406,7 @@ func roll_for_soul_stats(soul_stats_roll_result):
 	var health : int = 1
 	var number_of_bonuses : int = 0
 	var number_of_drawbacks : int = 0
-	var keywords : Array
+	var keywords : Array = []
 	match soul_stats_roll_result:
 		1:
 			damage = 0
@@ -429,10 +434,16 @@ func roll_for_soul_stats(soul_stats_roll_result):
 			health = 3
 			number_of_drawbacks = 3
 	while number_of_bonuses != 0:
-		keywords.append(roll_for_bonuses(rnginator(12)))
+		var new_keyword = roll_for_bonuses(rnginator(12))
+		while keywords.find(new_keyword) != -1:
+			new_keyword = roll_for_bonuses(rnginator(12))
+		keywords.append(new_keyword)
 		number_of_bonuses -= 1
 	while number_of_drawbacks != 0:
-		keywords.append(roll_for_drawbacks(rnginator(6)))
+		var new_keyword = roll_for_drawbacks(rnginator(12))
+		while keywords.find(new_keyword) != -1:
+			new_keyword = roll_for_drawbacks(rnginator(12))
+		keywords.append(new_keyword)
 		number_of_drawbacks -= 1
 	return { "Damage" : damage,
 			 "Health" : health,
@@ -490,19 +501,19 @@ func roll_for_advanced_bonuses(advanced_roll_result):
 		1,2:
 			if card["Secondary Affinity"] != "None":
 				var possible_keywords : Array = []
-				possible_keywords.append_array(advanced_bonus_keywords_by_affinity[card["Primary Affinity"]])
-				possible_keywords.append_array(advanced_bonus_keywords_by_affinity[card["Secondary Affinity"]])
+				possible_keywords.append(advanced_bonus_keywords_by_affinity[card["Primary Affinity"]])
+				possible_keywords.append(advanced_bonus_keywords_by_affinity[card["Secondary Affinity"]])
 				return possible_keywords.pick_random()
 			else:
-				return advanced_bonus_keywords_by_affinity[card["Primary Affinity"]].pick_random()
+				return advanced_bonus_keywords_by_affinity[card["Primary Affinity"]]
 		3,4:
-			if card["Secondary Affinity"] != "None":
+			if card["Secondary Soul Type"] != "None":
 				var possible_keywords : Array = []
-				possible_keywords.append_array(advanced_bonus_keywords_by_soul_type[card["Primary Affinity"]])
-				possible_keywords.append_array(advanced_bonus_keywords_by_soul_type[card["Secondary Affinity"]])
+				possible_keywords.append(advanced_bonus_keywords_by_soul_type[card["Primary Soul Type"]])
+				possible_keywords.append(advanced_bonus_keywords_by_soul_type[card["Secondary Soul Type"]])
 				return possible_keywords.pick_random()
 			else:
-				return advanced_bonus_keywords_by_soul_type[card["Primary Affinity"]].pick_random()
+				return advanced_bonus_keywords_by_soul_type[card["Primary Soul Type"]]
 		5:
 			return "Fury"
 		6:
@@ -511,4 +522,22 @@ func roll_for_advanced_bonuses(advanced_roll_result):
 			return "Double"
 		8:
 			return "Cleave"
+
+
+func roll_for_mana_cost_bonuses(mana_cost_bonus_roll):
+	match mana_cost_bonus_roll:
+		1:
+			card["Damage"] += 2
+			card["Health"] += 1
+		2:
+			card["Damage"] += 1
+			card["Health"] += 2
+		3:
+			card["Damage"] += 1
+			card["Keywords"].append(roll_for_bonuses(rnginator(12)))
+		4:
+			card["Health"] += 1
+			card["Keywords"].append(roll_for_bonuses(rnginator(12)))
+		5,6:
+			card["Keywords"].append(roll_for_advanced_bonuses(rnginator(8)))
 
