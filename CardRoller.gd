@@ -433,13 +433,13 @@ func roll_for_soul_stats(soul_stats_roll_result):
 			damage = 3
 			health = 3
 			number_of_drawbacks = 3
-	while number_of_bonuses != 0:
+	while number_of_bonuses > 0:
 		var new_keyword = roll_for_bonuses(rnginator(12))
 		while keywords.find(new_keyword) != -1:
 			new_keyword = roll_for_bonuses(rnginator(12))
 		keywords.append(new_keyword)
 		number_of_bonuses -= 1
-	while number_of_drawbacks != 0:
+	while number_of_drawbacks > 0:
 		var new_keyword = roll_for_drawbacks(rnginator(6))
 		while keywords.find(new_keyword) != -1:
 			new_keyword = roll_for_drawbacks(rnginator(6))
