@@ -1,9 +1,12 @@
 extends Node2D
 
+
 @export var number_of_cards_to_gen : int = 100
 
+
 var card : Dictionary = {}
-var rng
+var rng : RandomNumberGenerator
+
 
 var affinities : Array = [
 	"Order",
@@ -15,6 +18,7 @@ var affinities : Array = [
 	"None"
 ]
 
+
 var opposed_affinities : Dictionary = {
 	"Order" : "Chaos",
 	"Mind" : "Nature",
@@ -23,6 +27,7 @@ var opposed_affinities : Dictionary = {
 	"Nature" : "Mind",
 	"Spirit" : "Ambition",
 }
+
 
 var soul_types : Dictionary = {
 	
@@ -70,25 +75,243 @@ var soul_types : Dictionary = {
 	}
 
 
+var bonus_keywords_by_affinity : Dictionary = {
+	"Order" : [
+		"Guard",
+		"Heroic",
+		"Inspire",
+		"Support",
+		"Muster"
+	],
+	"Mind" : [
+		"Oracle",
+		"Attuned",
+		"Ward",
+		"Ritual",
+		"Research"
+	],
+	"Ambition" : [
+		"Pilfer",
+		"Intimidation",
+		"Misdirect",
+		"Command",
+		"Assassinate"
+	],
+	"Chaos" : [
+		"Bloodthirsty",
+		"Shove",
+		"Reckless",
+		"Taunt",
+		"Warp"
+	],
+	"Nature" : [
+		"Apex",
+		"Predator",
+		"Fearsome",
+		"Carrion",
+		"Growth"
+	],
+	"Spirit" : [
+		"Haunting",
+		"Ephemeral",
+		"Healer",
+		"Conjurer",
+		"Revive"
+	]
+}
+
+
+var bonus_keywords_by_soul_type : Dictionary = {
+	"Paladin" : [
+		"Oath",
+		"Subduer",
+		"Squire"
+	],
+	"Wizard" : [
+		"Sagacious",
+		"Autodidact",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+	],
+	"Dragon" : [
+		"Hoard",
+		"Wyrmbreath",
+		"Terrifying Presence"
+	],
+	"Warrior" : [
+		"Weapon Master",
+		"Berserk",
+		"Barbarian"
+	],
+	"Beast" : [
+		"Feral",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+	],
+	"Undead" : [
+		"Flesh Heap",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+	],
+	"Construct" : [
+		"Fundamental",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+		"Nullstone"
+	],
+	"Noble" : [
+		"Tariff",
+		"Diplomacy",
+		"Lineage"
+	],
+	"Hunter" : [
+		"Hunt",
+		"Blend",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+	],
+	"Angel" : [
+		"Shield of Faith",
+		"Reliquary",
+		"Ring of Eyes",
+	],
+	"Rogue" : [
+		"Sneaky",
+		"Executioner",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+	],
+	"Horror" : [
+		"Unfathomable",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+	],
+	"Cleric" : [
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+		"Oracle",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+	],
+	"Demon" : [
+		"Desecrator",
+		"Blasphemous",
+		"Profane"
+	],
+	"Dinosaur" : [
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+	],
+	"Fae" : [
+		"Trickster",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+	],
+	"Cultist" : [
+		"Sacrifice",
+		"Idolator",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+	],
+	"Elemental" : [
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+	]
+}
+
+
+var advanced_bonus_keywords_by_affinity : Dictionary = {
+	"Order" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Mind" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Ambition" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Chaos" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Nature" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Spirit" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+}
+
+
+var advanced_bonus_keywords_by_soul_type : Dictionary = {
+	"Paladin" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Wizard" : "Omniscient",
+	"Dragon" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Warrior" : "Vengeance for the Fallen",
+	"Beast" : "NEEDS KEYWORD HERE :)))))))))))))))))))))))),",
+	"Undead" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Construct" : "BIG FUCKING LASER",
+	"Noble" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Hunter" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Angel" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Rogue" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Horror" : "Eldritch Lore",
+	"Cleric" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Demon" : "Contract",
+	"Dinosaur" : "Rampage",
+	"Fae" : "Suspicious Gift",
+	"Cultist" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Elemental" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+}
+
+
+var drawback_keywords_by_affinity : Dictionary = {
+	"Order" : [
+		"Pacifist",
+		"Dogmatic",
+		"Challenge",
+		"Honorable",
+		"Heretical"
+	],
+	"Mind" : [
+		"Fragile",
+		"Ancient",
+		"Mad",
+		"Clumsy",
+		"Complex"
+	],
+	"Ambition" : [
+		"Cowardly",
+		"Dramatic",
+		"Conceit",
+		"Morbid",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+	],
+	"Chaos" : [
+		"Aggressive",
+		"Unstable",
+		"Disloyal",
+		"Unpredictable",
+		"Unruly"
+	],
+	"Nature" : [
+		"Savage",
+		"Carnivore",
+		"Insatiable",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+		"Solitary"
+	],
+	"Spirit" : [
+		"Immaterial",
+		"Necrotic",
+		"Siphon",
+		"Cursed",
+		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+	]
+}
+
+
 func _ready():
-	generate_card()
+	for i in number_of_cards_to_gen:
+		generate_card()
 
 
 func generate_card():
-	for i in number_of_cards_to_gen:
-		card.merge(roll_for_mana_cost(rnginator(6)))
-		card.merge(roll_for_card_affinity(rnginator(8)))
-		match roll_for_card_type(rnginator(2)):
-			"Soul":
-				card.merge({"Card Type" : "Soul"})
-				card.merge(roll_for_soul_type(rnginator(12)))
-				card.merge(roll_for_soul_stats(rnginator(8)))
-				print(str(card))
-				clear_card()
-			"Magic":
-				card.merge({"Card Type" : "Magic"})
-				print(str(card))
-				clear_card()
+	card.merge(roll_for_mana_cost(rnginator(6)))
+	card.merge(roll_for_card_affinity(rnginator(8)))
+	match roll_for_card_type(rnginator(2)):
+		"Soul":
+			card.merge({"Card Type" : "Soul"})
+			card.merge(roll_for_soul_type(rnginator(12)))
+			card.merge(roll_for_soul_stats(rnginator(8)))
+			print(str(card))
+			clear_card()
+		"Magic":
+			card.merge({"Card Type" : "Magic"})
+			print(str(card))
+			clear_card()
 	
 	
 func clear_card():
@@ -202,14 +425,86 @@ func roll_for_soul_stats(soul_stats_roll_result):
 			health = 3
 			number_of_drawbacks = 3
 	while number_of_bonuses != 0:
-		roll_for_bonuses(rnginator(12))
+		keywords.append(roll_for_bonuses(rnginator(12)))
 		number_of_bonuses -= 1
 	while number_of_drawbacks != 0:
-		roll_for_drawbacks(rnginator(6))
+		keywords.append(roll_for_drawbacks(rnginator(6)))
 		number_of_drawbacks -= 1
+	return { "Damage" : damage,
+			 "Health" : health,
+			 "Keywords" : keywords }
+	
 	
 func roll_for_bonuses(bonuses_roll_result):
-	pass
+	match bonuses_roll_result:
+		1,2,3:
+			if card["Secondary Affinity"] != "None":
+				var possible_keywords : Array = []
+				possible_keywords.append_array(bonus_keywords_by_affinity[card["Primary Affinity"]])
+				possible_keywords.append_array(bonus_keywords_by_affinity[card["Secondary Affinity"]])
+				return possible_keywords.pick_random()
+			else:
+				return bonus_keywords_by_affinity[card["Primary Affinity"]].pick_random()
+		4,5,6:
+			if card["Secondary Soul Type"] != "None":
+				var possible_keywords : Array = []
+				possible_keywords.append_array(bonus_keywords_by_soul_type[card["Primary Soul Type"]])
+				possible_keywords.append_array(bonus_keywords_by_soul_type[card["Secondary Soul Type"]])
+				return possible_keywords.pick_random()
+			else:
+				return bonus_keywords_by_soul_type[card["Primary Soul Type"]].pick_random()
+		7:
+			return "Large"
+		8:
+			return "Quick"
+		9:
+			return "Lunge"
+		10:
+			return "Mobile"
+		11:
+			return "Guard"
+		12:
+			return "Charge"
+	
 	
 func roll_for_drawbacks(drawbacks_roll_result):
-	pass
+	match drawbacks_roll_result:
+		1,2,3,4,5:
+			if card["Secondary Affinity"] != "None":
+				var possible_keywords : Array = []
+				possible_keywords.append_array(drawback_keywords_by_affinity[card["Primary Affinity"]])
+				possible_keywords.append_array(drawback_keywords_by_affinity[card["Secondary Affinity"]])
+				return possible_keywords.pick_random()
+			else:
+				return drawback_keywords_by_affinity[card["Primary Affinity"]].pick_random()
+		6:
+			return "Traitorous"
+
+
+func roll_for_advanced_bonuses(advanced_roll_result):
+	match advanced_roll_result:
+		1,2:
+			if card["Secondary Affinity"] != "None":
+				var possible_keywords : Array = []
+				possible_keywords.append_array(advanced_bonus_keywords_by_affinity[card["Primary Affinity"]])
+				possible_keywords.append_array(advanced_bonus_keywords_by_affinity[card["Secondary Affinity"]])
+				return possible_keywords.pick_random()
+			else:
+				return advanced_bonus_keywords_by_affinity[card["Primary Affinity"]].pick_random()
+		3,4:
+			if card["Secondary Affinity"] != "None":
+				var possible_keywords : Array = []
+				possible_keywords.append_array(advanced_bonus_keywords_by_soul_type[card["Primary Affinity"]])
+				possible_keywords.append_array(advanced_bonus_keywords_by_soul_type[card["Secondary Affinity"]])
+				return possible_keywords.pick_random()
+			else:
+				return advanced_bonus_keywords_by_soul_type[card["Primary Affinity"]].pick_random()
+		5:
+			return "Fury"
+		6:
+			return "Ranged"
+		7:
+			return "Double"
+		8:
+			return "Cleave"
+
