@@ -11,8 +11,8 @@ var rng : RandomNumberGenerator
 var rarity : Array = [
 	"Trinket",
 	"Wondrous",
-	"Ascendent",
-	"Relic"
+	"Relic",
+	"Ascendant"
 ]
 
 
