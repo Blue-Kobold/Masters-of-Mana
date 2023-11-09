@@ -1,15 +1,18 @@
 extends Node2D
 
 
-@export var number_of_cards_to_gen : int = 60
+@export var number_of_cards_to_gen : int = 3
 
 var deck = load(("res://Deck.gd"))
 var card = load("res://Card.gd")
-var imgcon = load("res://ImageConstructor.gd").new()
+var imgcon
 var Roller = load("res://CardRoller.gd").new()
+var exampleGrid
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	imgcon = $ImageConstructor
+	exampleGrid = $TextureRect
 	CreateDeck(number_of_cards_to_gen)
 	pass # Replace with function body.
 
@@ -74,7 +77,7 @@ func CreateDeck(cardCount):
 	var collectionofObjects = []
 	
 	for i in GeneratedCards.size():
-		print("WOOOOOOOOoooooooo " + str(GeneratedCards[i]))
+		#print("WOOOOOOOOoooooooo " + str(GeneratedCards[i]))
 		var cardInstance = ObjectDictionaryTemplate.duplicate()
 		var Transfer = GeneratedCards[i]
 		cardInstance["Nickname"] = str(Transfer["Card Type"])
@@ -84,9 +87,10 @@ func CreateDeck(cardCount):
 		DeckDictionary["ObjectStates"][0]["DeckIDs"].append(cardInstance["CardID"])
 		collectionofObjects.append(cardInstance)
 	
-	var CardCollection = imgcon.GenerateCard(cardCount)
+	var CardCollection = await imgcon.GenerateCardCollection(GeneratedCards)
 	var ccString = "res://"+ deckName +"//CardGrid.png"
-	CardCollection.img.save_png(ccString)
+	CardCollection.fullCardGrid.save_png(ccString)
+	exampleGrid.texture = ImageTexture.create_from_image(CardCollection.fullCardGrid)
 	
 	DeckDictionary["ObjectStates"][0]["CustomDeck"]["6969"]["FaceURL"] = ccString
 	DeckDictionary["ObjectStates"][0]["CustomDeck"]["6969"]["BackURL"] = "res://textures/CardBack.png"

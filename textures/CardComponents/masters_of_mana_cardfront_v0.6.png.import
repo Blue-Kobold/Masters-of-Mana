@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbuq6jgdnihd3"
-path="res://.godot/imported/CardBack.png-650df9e24ee51bae97c5aef2bcd422bb.ctex"
+uid="uid://bb8qqkmjoo10e"
+path="res://.godot/imported/masters_of_mana_cardfront_v0.6.png-3685e967ab6d9af889850b665dac0987.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/CardBack.png"
-dest_files=["res://.godot/imported/CardBack.png-650df9e24ee51bae97c5aef2bcd422bb.ctex"]
+source_file="res://textures/CardComponents/masters_of_mana_cardfront_v0.6.png"
+dest_files=["res://.godot/imported/masters_of_mana_cardfront_v0.6.png-3685e967ab6d9af889850b665dac0987.ctex"]
 
 [params]
 
