@@ -89,7 +89,7 @@ func GenerateCardCollection(cardCollection):
 		bufImg = Image.load_from_file(outputData.individualCards[i])
 		bufCardWidth = ((i-((roundf(i/9)*9)))*cardWidth)
 		bufCardheight = (roundf((i/10))*cardHeight)
-		print("w:" + str(bufImg.data["height"]) + " h:" + str(bufImg.data["height"]))
+		#print("w:" + str(bufImg.data["height"]) + " h:" + str(bufImg.data["height"]))
 		outputImage.blit_rect(bufImg,Rect2(0,0,cardWidth,cardHeight),Vector2(bufCardWidth,bufCardheight))
 		
 	
