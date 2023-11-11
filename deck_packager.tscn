@@ -1,7 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqip4h43p3j0y"]
+[gd_scene load_steps=3 format=3 uid="uid://cqip4h43p3j0y"]
 
 [ext_resource type="Script" path="res://deckPackager.gd" id="1_pr134"]
+[ext_resource type="PackedScene" uid="uid://dos4pg7e8o2as" path="res://image_constructor.tscn" id="2_sali7"]
 
 [node name="DeckPackager" type="Node2D"]
 script = ExtResource("1_pr134")
 number_of_cards_to_gen = 30
+
+[node name="ImageConstructor" parent="." instance=ExtResource("2_sali7")]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1149.0
+offset_bottom = 648.0
