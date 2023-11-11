@@ -138,7 +138,7 @@ var bonus_keywords_by_soul_type : Dictionary = {
 	"Wizard" : [
 		"Sagacious",
 		"Autodidact",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+		"Anti-Mage"
 	],
 	"Dragon" : [
 		"Hoard",
@@ -148,21 +148,21 @@ var bonus_keywords_by_soul_type : Dictionary = {
 	"Warrior" : [
 		"Weapon Master",
 		"Berserk",
-		"Barbarian"
+		"Superstitious"
 	],
 	"Beast" : [
 		"Feral",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+		"Invasive",
+		"Dire"
 	],
 	"Undead" : [
 		"Flesh Heap",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+		"Undying",
+		"Enthrall"
 	],
 	"Construct" : [
 		"Fundamental",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+		"Adaptive",
 		"Nullstone"
 	],
 	"Noble" : [
@@ -172,28 +172,28 @@ var bonus_keywords_by_soul_type : Dictionary = {
 	],
 	"Hunter" : [
 		"Hunt",
-		"Blend",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+		"Cautious",
+		"Quarry"
 	],
 	"Angel" : [
 		"Shield of Faith",
 		"Reliquary",
-		"Ring of Eyes",
+		"Humbling",
 	],
 	"Rogue" : [
 		"Sneaky",
 		"Executioner",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+		"Evasive"
 	],
 	"Horror" : [
 		"Unfathomable",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+		"Madness",
+		"Mutable"
 	],
 	"Cleric" : [
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+		"Sanctify",
 		"Oracle",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+		"Hallow"
 	],
 	"Demon" : [
 		"Desecrator",
@@ -201,57 +201,57 @@ var bonus_keywords_by_soul_type : Dictionary = {
 		"Profane"
 	],
 	"Dinosaur" : [
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+		"Roar",
+		"Devastate",
+		"Rampage"
 	],
 	"Fae" : [
 		"Trickster",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+		"Wild Path",
+		"Silencer"
 	],
 	"Cultist" : [
 		"Sacrifice",
 		"Idolator",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+		"Indoctrinate"
 	],
 	"Elemental" : [
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+		"Locus",
+		"Incarnate",
+		"Steward"
 	]
 }
 
 
 var advanced_bonus_keywords_by_affinity : Dictionary = {
-	"Order" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-	"Mind" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-	"Ambition" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-	"Chaos" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-	"Nature" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-	"Spirit" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+	"Order" : "Deterministic",
+	"Mind" : "Omniscient",
+	"Ambition" : "Ruthless",
+	"Chaos" : "Pandemonium",
+	"Nature" : "Call of the Wild",
+	"Spirit" : "The Restless Dead"
 }
 
 
 var advanced_bonus_keywords_by_soul_type : Dictionary = {
-	"Paladin" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-	"Wizard" : "Omniscient",
-	"Dragon" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Paladin" : "Shield of Faith",
+	"Wizard" : "Omnipotent",
+	"Dragon" : "The World Is Yours",
 	"Warrior" : "Vengeance for the Fallen",
-	"Beast" : "NEEDS KEYWORD HERE :)))))))))))))))))))))))),",
-	"Undead" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-	"Construct" : "BIG FUCKING LASER",
-	"Noble" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-	"Hunter" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-	"Angel" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-	"Rogue" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Beast" : "Dominant Species",
+	"Undead" : "Immortal",
+	"Construct" : "Disintegrate",
+	"Noble" : "Sovereign",
+	"Hunter" : "Honor Thy Prey",
+	"Angel" : "Be Not Afraid",
+	"Rogue" : "One With the Shadows",
 	"Horror" : "Eldritch Lore",
-	"Cleric" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+	"Cleric" : "Prophecy Accords",
 	"Demon" : "Contract",
-	"Dinosaur" : "Rampage",
+	"Dinosaur" : "Spawn",
 	"Fae" : "Suspicious Gift",
-	"Cultist" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))",
-	"Elemental" : "NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+	"Cultist" : "Beckon the End",
+	"Elemental" : "The World Wakes"
 }
 
 
@@ -266,16 +266,16 @@ var drawback_keywords_by_affinity : Dictionary = {
 	"Mind" : [
 		"Fragile",
 		"Ancient",
-		"Mad",
+		"Delirious",
 		"Clumsy",
-		"Complex"
+		"Fascination"
 	],
 	"Ambition" : [
 		"Cowardly",
 		"Dramatic",
 		"Conceit",
 		"Morbid",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+		"Faithless"
 	],
 	"Chaos" : [
 		"Aggressive",
@@ -288,7 +288,7 @@ var drawback_keywords_by_affinity : Dictionary = {
 		"Savage",
 		"Carnivore",
 		"Insatiable",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))",
+		"Hunted",
 		"Solitary"
 	],
 	"Spirit" : [
@@ -296,7 +296,7 @@ var drawback_keywords_by_affinity : Dictionary = {
 		"Necrotic",
 		"Siphon",
 		"Cursed",
-		"NEEDS KEYWORD HERE :))))))))))))))))))))))))"
+		"Fickle"
 	]
 }
 
@@ -502,7 +502,7 @@ func roll_for_bonuses(bonuses_roll_result):
 		10:
 			return "Mobile"
 		11:
-			return "Guard"
+			return "Implacable"
 		12:
 			return "Charge"
 	
