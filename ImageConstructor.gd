@@ -48,25 +48,40 @@ func OpenCardForge():
 	
 	await get_tree().create_timer(0.5).timeout
 
-func GenerateSingle(targetCard, count):
+func AddBackCard(path):
+	if DirAccess.dir_exists_absolute(path+"/GeneratedCards") != true:
+		
+		DirAccess.make_dir_absolute(path+"/GeneratedCards")
+	
+	var outPath = path + "/GeneratedCards/CardBack.png"
+	cardBack.save_png(outPath)
+	return outPath
+
+func GenerateSingle(targetCard):
+	
+	OpenCardForge()
 	
 	frgImg.texture = ImageTexture.new().create_from_image(cardBase)
 	
-	frgTitle.text = targetCard["Rarity"] + " " + targetCard["Card Type"]
-	frgText.text = targetCard["Primary Affinity"] + " " + targetCard["Secondary Affinity"]
+	var titleStr = targetCard["Rarity"] + " " + targetCard["Card Type"]
+	var textStr = targetCard["Primary Affinity"] + " " + targetCard["Secondary Affinity"]
 	
-	var waitTime = 0.05
+	frgTitle.text = titleStr
+	frgText.text = textStr
+	
+	var waitTime = 0.25
+	
+	var cardPath = targetCard["dir"]+"/GeneratedCards/"+ titleStr + " " + textStr + " " + str(targetCard["index"]) +".png"
 	
 	await get_tree().create_timer(waitTime).timeout
-	cardForge.get_viewport().get_texture().get_image().save_png("res://textures/GeneratedCards/"+ frgTitle.text + str(count) +".png")
-	var returningImageStr = "res://textures/CardComponents/"+ frgTitle.text +".png"
+	cardForge.get_viewport().get_texture().get_image().save_png(cardPath)
 	await get_tree().create_timer(waitTime).timeout
 	
 	frgTitle.text = "Blank Card"
 	frgText.text = "Blank Desc"
 	
 	
-	return returningImageStr
+	return cardPath
 
 
 func GenerateCardCollection(cardCollection):
@@ -79,10 +94,10 @@ func GenerateCardCollection(cardCollection):
 	var bufImg
 	var bufCardWidth
 	var bufCardheight
-	for i in cardCollection:
-		
-		bufImg = await GenerateSingle(i, cardCollection.find(i))
-		outputData.individualCards.append(bufImg)
+	#for i in cardCollection:
+#
+		#bufImg = await GenerateSingle(i, cardCollection.find(i))
+		#outputData.individualCards.append(bufImg)
 	
 	for i in outputData.individualCards.size():
 		
