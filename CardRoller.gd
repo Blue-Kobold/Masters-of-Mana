@@ -569,7 +569,3 @@ func roll_for_mana_cost_and_rarity_bonuses(mana_cost_bonus_roll):
 			card["Keywords"].append(roll_for_bonuses(rnginator(12)))
 		5,6:
 			card["Keywords"].append(roll_for_advanced_bonuses(rnginator(8)))
-
-
-
-

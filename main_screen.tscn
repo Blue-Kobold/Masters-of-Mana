@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dycssoiecdk7r"]
+[gd_scene load_steps=5 format=3 uid="uid://dycssoiecdk7r"]
 
+[ext_resource type="Script" path="res://ui_handler.gd" id="1_avh4f"]
 [ext_resource type="Script" path="res://CardRoller.gd" id="1_svu8i"]
 [ext_resource type="Texture2D" uid="uid://bf8mbquf68jdb" path="res://textures/Chalk_Affinity_Sigil.png" id="2_86o2s"]
 
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_avh4f")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -29,112 +31,96 @@ position = Vector2(0, -12)
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(420.597, 320.604)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ChalkAffinitySigil2" type="Sprite2D" parent="Node2D"]
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(-1.40308, -0.395874)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ChalkAffinitySigil3" type="Sprite2D" parent="Node2D"]
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(-238.403, 626.604)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ChalkAffinitySigil4" type="Sprite2D" parent="Node2D"]
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(304.597, 902.604)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ChalkAffinitySigil5" type="Sprite2D" parent="Node2D"]
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(946, 623)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ChalkAffinitySigil6" type="Sprite2D" parent="Node2D"]
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(1116, 50)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ChalkAffinitySigil7" type="Sprite2D" parent="Node2D"]
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(665, -310)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ChalkAffinitySigil8" type="Sprite2D" parent="Node2D"]
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(1579, 390)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ChalkAffinitySigil9" type="Sprite2D" parent="Node2D"]
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(1352, 987)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ChalkAffinitySigil10" type="Sprite2D" parent="Node2D"]
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(726, 1252)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ChalkAffinitySigil11" type="Sprite2D" parent="Node2D"]
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(106, 1512)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ChalkAffinitySigil12" type="Sprite2D" parent="Node2D"]
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(-347, 1213)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ChalkAffinitySigil13" type="Sprite2D" parent="Node2D"]
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(1182, 1570)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ChalkAffinitySigil14" type="Sprite2D" parent="Node2D"]
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(565, 1830)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ChalkAffinitySigil15" type="Sprite2D" parent="Node2D"]
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(1808, 1309)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ChalkAffinitySigil16" type="Sprite2D" parent="Node2D"]
 self_modulate = Color(1, 1, 1, 0.160784)
 position = Vector2(1981, 719)
 rotation = 0.908238
-scale = Vector2(1, 1)
 texture = ExtResource("2_86o2s")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
@@ -202,10 +188,31 @@ item_3/id = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 75
 
 [node name="Label" type="Label" parent="HBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "_Set Output Path"
+text = "Set Output Path"
+
+[node name="FileDialog" type="FileDialog" parent="HBoxContainer/HBoxContainer2"]
+mode = 2
+title = "Open a Directory"
+initial_position = 1
+size = Vector2i(800, 500)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+
+[node name="FileDialogButton" type="Button" parent="HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Select"
+
+[node name="SelectedDir" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.862745, 0.560784, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "No Path Selected!"
+text_overrun_behavior = 3
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -228,4 +235,6 @@ layout_mode = 2
 text = "Generate Cards!"
 script = ExtResource("1_svu8i")
 
+[connection signal="dir_selected" from="HBoxContainer/HBoxContainer2/FileDialog" to="." method="_on_file_dialog_dir_selected"]
+[connection signal="pressed" from="HBoxContainer/HBoxContainer2/FileDialogButton" to="." method="_on_file_dialog_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/Button" to="HBoxContainer/Button" method="_on_pressed"]
