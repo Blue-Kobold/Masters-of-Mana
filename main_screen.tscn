@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dycssoiecdk7r"]
+[gd_scene load_steps=4 format=3 uid="uid://dycssoiecdk7r"]
 
 [ext_resource type="Script" path="res://CardRoller.gd" id="1_svu8i"]
+[ext_resource type="Texture2D" uid="uid://bf8mbquf68jdb" path="res://textures/Chalk_Affinity_Sigil.png" id="2_86o2s"]
 
 [sub_resource type="Theme" id="Theme_w3poq"]
 
@@ -21,38 +22,154 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0980392, 0.0980392, 0.0980392, 1)
 
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, -12)
+
+[node name="ChalkAffinitySigil" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(420.597, 320.604)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
+[node name="ChalkAffinitySigil2" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(-1.40308, -0.395874)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
+[node name="ChalkAffinitySigil3" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(-238.403, 626.604)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
+[node name="ChalkAffinitySigil4" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(304.597, 902.604)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
+[node name="ChalkAffinitySigil5" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(946, 623)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
+[node name="ChalkAffinitySigil6" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(1116, 50)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
+[node name="ChalkAffinitySigil7" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(665, -310)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
+[node name="ChalkAffinitySigil8" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(1579, 390)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
+[node name="ChalkAffinitySigil9" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(1352, 987)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
+[node name="ChalkAffinitySigil10" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(726, 1252)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
+[node name="ChalkAffinitySigil11" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(106, 1512)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
+[node name="ChalkAffinitySigil12" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(-347, 1213)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
+[node name="ChalkAffinitySigil13" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(1182, 1570)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
+[node name="ChalkAffinitySigil14" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(565, 1830)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
+[node name="ChalkAffinitySigil15" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(1808, 1309)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
+[node name="ChalkAffinitySigil16" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.160784)
+position = Vector2(1981, 719)
+rotation = 0.908238
+scale = Vector2(1, 1)
+texture = ExtResource("2_86o2s")
+
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = 0.720486
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 830.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.211765, 0.211765, 0.211765, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect3" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = 0.727431
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 838.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 861.0
-offset_top = 17.0
-offset_right = -24.0
-offset_bottom = -23.0
+anchors_preset = -1
+anchor_left = 0.747396
+anchor_top = 0.0262346
+anchor_right = 0.979167
+anchor_bottom = 0.964506
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 22
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="HBoxContainer"]
 layout_mode = 2
