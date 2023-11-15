@@ -11,6 +11,6 @@ config_version=5
 [application]
 
 config/name="MoM"
-run/main_scene="res://card_roller.tscn"
+run/main_scene="res://main_screen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"

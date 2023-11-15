@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 
 @export var number_of_cards_to_gen : int = 100
@@ -302,9 +302,13 @@ var drawback_keywords_by_affinity : Dictionary = {
 
 
 func _ready():
+	pass
+	
+func _on_pressed():
+	var textInput = $"../HBoxContainer3/NumberOfCardsToGenerate".get_text()
+	number_of_cards_to_gen = int(textInput)
 	generate_card(number_of_cards_to_gen)
-
-
+	
 func generate_card(cardCount):
 	
 	var CardCollection = []
@@ -565,4 +569,7 @@ func roll_for_mana_cost_and_rarity_bonuses(mana_cost_bonus_roll):
 			card["Keywords"].append(roll_for_bonuses(rnginator(12)))
 		5,6:
 			card["Keywords"].append(roll_for_advanced_bonuses(rnginator(8)))
+
+
+
 

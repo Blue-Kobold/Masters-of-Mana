@@ -1,0 +1,114 @@
+[gd_scene load_steps=3 format=3 uid="uid://dycssoiecdk7r"]
+
+[ext_resource type="Script" path="res://CardRoller.gd" id="1_svu8i"]
+
+[sub_resource type="Theme" id="Theme_w3poq"]
+
+[node name="UserInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 830.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.211765, 0.211765, 0.211765, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 838.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 861.0
+offset_top = 17.0
+offset_right = -24.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 22
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_w3poq")
+text = "Card Generator Controls"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "_Item(s) to Generate"
+
+[node name="MenuBar" type="MenuBar" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="--------" type="PopupMenu" parent="HBoxContainer/HBoxContainer/MenuBar"]
+size = Vector2i(135, 100)
+item_count = 4
+item_0/text = "Single"
+item_0/id = 3
+item_1/text = "Booster Pack"
+item_1/id = 0
+item_2/text = "Scion"
+item_2/id = 1
+item_3/text = "Random Deck"
+item_3/id = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "_Set Output Path"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 23
+
+[node name="Label2" type="Label" parent="HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "No. of Cards to Generate:
+"
+
+[node name="NumberOfCardsToGenerate" type="TextEdit" parent="HBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(38.65, 0)
+layout_mode = 2
+text = "3"
+wrap_mode = 1
+scroll_fit_content_height = true
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Generate Cards!"
+script = ExtResource("1_svu8i")
+
+[connection signal="pressed" from="HBoxContainer/Button" to="HBoxContainer/Button" method="_on_pressed"]
