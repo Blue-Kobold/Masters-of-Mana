@@ -16,7 +16,7 @@ func _ready():
 
 func CreateDeck(cardCount):
 	
-	var preDir = "C:/Users/Taelin/Documents/My Games/Tabletop Simulator/Saves/Saved Objects/MOM Testing Grounds/Active Testing/"
+	var preDir = "res://"
 	var deckName = "TestDeckOfCards"
 	var _dir 
 	var CardIDSet = (RandomNumberGenerator.new().randi_range(1000,9999))
@@ -114,6 +114,8 @@ func CreateDeck(cardCount):
 	
 	
 	var outputFile = FileAccess.open((_dir + "//CardGrid.json"),FileAccess.WRITE)
+	
+	imgcon.cardForge.queue_free()
 	
 	outputFile.store_string(JSON.stringify(DeckDictionary,"   "))
 	

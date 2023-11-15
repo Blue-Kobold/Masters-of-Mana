@@ -1,20 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbeden3vom1mb"]
+[gd_scene load_steps=7 format=3 uid="uid://cbeden3vom1mb"]
 
 [ext_resource type="Script" path="res://card_template.gd" id="1_irh8s"]
-[ext_resource type="Texture2D" uid="uid://dtd3rjvp28lpn" path="res://textures/CardComponents/masters_of_mana_cardback_v1.png" id="2_b724g"]
+[ext_resource type="Texture2D" uid="uid://dhs5hjpdif3p7" path="res://textures/CardComponents/CardInnerContent/ExampleGuy.png" id="2_5w130"]
+[ext_resource type="Texture2D" uid="uid://banljaihcyvbg" path="res://textures/CardComponents/card_background_for_color_shifting_empty.png" id="2_gbwoj"]
+[ext_resource type="Texture2D" uid="uid://c0in5k60yecyo" path="res://textures/CardComponents/cardfront_relic3.png" id="3_y6mib"]
+[ext_resource type="Texture2D" uid="uid://dirfwtrvvp6gn" path="res://textures/CardComponents/3_slot.png" id="4_rm60t"]
+[ext_resource type="Texture2D" uid="uid://b0tuhnjasg50l" path="res://textures/CardComponents/screws.png" id="5_b7hml"]
 
 [node name="CardTemplate" type="Window"]
 position = Vector2i(0, 36)
 size = Vector2i(750, 1050)
 script = ExtResource("1_irh8s")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="CardContents" type="TextureRect" parent="."]
 offset_right = 750.0
 offset_bottom = 1050.0
-texture = ExtResource("2_b724g")
+texture = ExtResource("2_5w130")
+
+[node name="CardBase" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+offset_right = 750.0
+offset_bottom = 1050.0
+texture = ExtResource("2_gbwoj")
+
+[node name="Plate" type="TextureRect" parent="."]
+offset_right = 750.0
+offset_bottom = 1050.0
+texture = ExtResource("3_y6mib")
+
+[node name="Pips" type="TextureRect" parent="."]
+offset_right = 750.0
+offset_bottom = 1050.0
+texture = ExtResource("4_rm60t")
+
+[node name="Screws" type="TextureRect" parent="."]
+offset_right = 750.0
+offset_bottom = 1050.0
+texture = ExtResource("5_b7hml")
+
+[node name="SetIcon" type="TextureRect" parent="."]
+offset_right = 750.0
+offset_bottom = 1050.0
+texture = ExtResource("5_b7hml")
 
 [node name="CardName" type="Node2D" parent="."]
-position = Vector2(40, 40)
+position = Vector2(35, 45)
 
 [node name="Label" type="Label" parent="CardName"]
 layout_direction = 2
@@ -25,14 +55,35 @@ offset_top = -21.0
 offset_right = 67.0
 offset_bottom = 21.0
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-text = "What did you think the name for this would be?"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 40
+text = "1234567890123456789012345678"
 vertical_alignment = 1
+max_lines_visible = 1
+visible_characters = 27
+text_direction = 1
+
+[node name="TypeText" type="Node2D" parent="."]
+position = Vector2(35, 450)
+
+[node name="Label" type="Label" parent="TypeText"]
+layout_direction = 2
+offset_right = 17.0
+offset_bottom = 492.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "1234567890123456789012345678901234567890"
+max_lines_visible = 1
+visible_characters = 40
 text_direction = 1
 
 [node name="RulesText" type="Node2D" parent="."]
-position = Vector2(50, 500)
+position = Vector2(35, 535)
 
 [node name="Label" type="Label" parent="RulesText"]
 layout_direction = 2
@@ -40,22 +91,50 @@ offset_right = 17.0
 offset_bottom = 492.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 30
-text = "1
-2
-3
-4
-5
-6
-7
-8
-9
-0
-1
-2
-3
-4
-5
+text = "1234567890123456789012345678901234567890
+2234567890123456789012345678901234567890
+3234567890123456789012345678901234567890
+4234567890123456789012345678901234567890
+5234567890123456789012345678901234567890
+6234567890123456789012345678901234567890
+7234567890123456789012345678901234567890
+8234567890123456789012345678901234567890
+9234567890123456789012345678901234567890
 "
+max_lines_visible = 9
+text_direction = 1
+
+[node name="PowerText" type="Node2D" parent="."]
+position = Vector2(35, 972.5)
+
+[node name="Label" type="Label" parent="PowerText"]
+layout_direction = 2
+offset_right = 17.0
+offset_bottom = 492.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 45
+text = "Power:99999"
+max_lines_visible = 9
+text_direction = 1
+
+[node name="DefenseText" type="Node2D" parent="."]
+position = Vector2(440, 972.5)
+
+[node name="Label" type="Label" parent="DefenseText"]
+layout_direction = 2
+offset_right = 17.0
+offset_bottom = 492.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 45
+text = "Health:99999"
+max_lines_visible = 9
 text_direction = 1
