@@ -2,21 +2,35 @@ extends Node2D
 
 @export var cardCount : int = 60
 
-var cardFront = Image.load_from_file("res://textures/CardComponents/masters_of_mana_cardfront_v0.6.png")
+var cardFront = Image.load_from_file("res://textures/CardComponents/card_background_for_color_shifting_empty.png")
 var cardBack = Image.load_from_file("res://textures/CardComponents/masters_of_mana_cardback_v1.png")
+
+var trinketPlate = Image.load_from_file("res://textures/CardComponents/card_metal_for_trinket.png")
+var wonderousPlate = Image.load_from_file("res://textures/CardComponents/card_metal_for_wondrous.png")
+var ascendantPlate = Image.load_from_file("res://textures/CardComponents/card_metal_for_ascendant.png")
+var relicPlate = Image.load_from_file("res://textures/CardComponents/cardfront_relic3.png")
+
+var manapip1 = Image.load_from_file("res://textures/CardComponents/1_slot.png")
+var manapip2 = Image.load_from_file("res://textures/CardComponents/2_slot.png")
+var manapip3 = Image.load_from_file("res://textures/CardComponents/3_slot.png")
 
 var cardHeight = cardFront.get_height()
 var cardWidth = cardFront.get_width()
 
-var cardBase = Image.load_from_file("res://textures/CardComponents/CardBase.png")
-
-
 var cardScene = preload("res://card_template.tscn")
 
 var cardForge
-var frgImg
+var frgBack
+var frgctx
+var frgPlate
+var frgPips
+var frgScrews
+var frgSet
 var frgTitle
 var frgText
+var frgRules
+var frgPow
+var frgGrd
 
 class ImageWithData:
 	var individualCards = []
@@ -37,9 +51,17 @@ func OpenCardForge():
 	get_viewport().set_embedding_subwindows(false)
 	cardForge = cardScene.instantiate()
 	add_child(cardForge)
-	frgImg = cardForge.get_child(0)
-	frgTitle = cardForge.get_child(1).get_child(0)
-	frgText = cardForge.get_child(2).get_child(0)
+	frgctx = cardForge.get_child(0)
+	frgBack = cardForge.get_child(1)
+	frgPlate = cardForge.get_child(2)
+	frgPips = cardForge.get_child(3)
+	frgScrews = cardForge.get_child(4)
+	frgSet = cardForge.get_child(5)
+	frgTitle = cardForge.get_child(6).get_child(0)
+	frgText = cardForge.get_child(7).get_child(0)
+	frgRules = cardForge.get_child(8).get_child(0)
+	frgPow = cardForge.get_child(9).get_child(0)
+	frgGrd = cardForge.get_child(10).get_child(0)
 	
 	cardForge.visible = true
 	cardForge.position = Vector2(6000,45)
@@ -61,15 +83,68 @@ func GenerateSingle(targetCard):
 	
 	OpenCardForge()
 	
-	frgImg.texture = ImageTexture.new().create_from_image(cardBase)
+	cardForge.title = "Smithin' card number " + str(targetCard["index"])
 	
-	var titleStr = targetCard["Rarity"] + " " + targetCard["Card Type"]
-	var textStr = targetCard["Primary Affinity"] + " " + targetCard["Secondary Affinity"]
+	frgBack.texture = ImageTexture.create_from_image(cardFront)
+	
+	match(targetCard["Primary Affinity"]):
+		#                               Color(R,G,B,A)
+		"Mind":
+			frgBack.self_modulate = Color(3,3,3,1)
+		"Ambition":
+			frgBack.self_modulate= Color(10,2,2,1)
+		"Chaos":
+			frgBack.self_modulate = Color(2,2,2,1)
+		"Order":
+			frgBack.self_modulate = Color(10,10,10,1)
+		"Nature":
+			frgBack.self_modulate = Color(2,10,2,1)
+		"Spirit":
+			frgBack.self_modulate = Color(2,2,10,1)
+		"None":
+			frgBack.self_modulate = Color(50,50,50,1)
+	
+	match(targetCard["Rarity"]):
+		"Trinket":
+			frgPlate.texture = ImageTexture.create_from_image(trinketPlate)
+		"Wondrous":
+			frgPlate.texture = ImageTexture.create_from_image(wonderousPlate)
+		"Ascendant":
+			frgPlate.texture = ImageTexture.create_from_image(ascendantPlate)
+		"Relic":
+			frgPlate.texture = ImageTexture.create_from_image(relicPlate)
+	
+	match(targetCard["Mana Cost"]):
+		1:
+			frgPips.texture = ImageTexture.create_from_image(manapip1)
+		2:
+			frgPips.texture = ImageTexture.create_from_image(manapip2)
+		3:
+			frgPips.texture = ImageTexture.create_from_image(manapip3)
+	
+	
+	var titleStr = targetCard["Card Type"]
+	var textStr = targetCard["Primary Affinity"] + "-" + targetCard["Secondary Affinity"]
+	var rulesStr = ""
+	var powStr = ""
+	var grdStr = ""
+	
+	if targetCard.has("Damage"):
+		powStr = "Power:" + str(targetCard["Damage"])
+	
+	if targetCard.has("Health"):
+		grdStr = "Health:" + str(targetCard["Health"])
+	
+	for i in  targetCard["Keywords"]:
+		rulesStr = i + "\n "
 	
 	frgTitle.text = titleStr
 	frgText.text = textStr
+	frgRules.text = rulesStr
+	frgPow.text = powStr
+	frgGrd.text = grdStr
 	
-	var waitTime = 0.25
+	var waitTime = 0.2
 	
 	var cardPath = targetCard["dir"]+"/GeneratedCards/"+ titleStr + " " + textStr + " " + str(targetCard["index"]) +".png"
 	
@@ -88,8 +163,9 @@ func GenerateCardCollection(cardCollection):
 	
 	await OpenCardForge()
 	
+	
 	var outputData = ImageWithData.new()
-	var outputImage = Image.create((cardWidth*9),(cardHeight*((clampi((roundf(cardCount/9)),0,9))+1)),false, Image.FORMAT_RGBA8)
+	var outputImage = Image.create((cardWidth*9),(cardHeight*((clampi((roundf(cardCount/9)),0,9))+1)),false, Image.FORMAT_RGBAF)
 	
 	var bufImg
 	var bufCardWidth
