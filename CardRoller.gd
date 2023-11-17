@@ -303,14 +303,20 @@ var drawback_keywords_by_affinity : Dictionary = {
 var itemsToGenerateMenuSelection
 var customCardRarity
 
+var deckPackager
+
 func _ready():
+	deckPackager = $"../../DeckPackager"
 	pass
 	
 func _on_pressed():
 	var textInput = $"../HBoxContainer3/NumberOfCardsToGenerate".get_text()
 	number_of_cards_to_gen = int(textInput)
 	
-	generate_card(number_of_cards_to_gen)
+	deckPackager.setDir($"../SelectedDir".get_text())
+	deckPackager.setDeckName($"../DeckName".get_text())
+	deckPackager.SetIDVal()
+	deckPackager.PackageExistingCards(generate_card(number_of_cards_to_gen))
 	
 func generate_card(cardCount):
 	

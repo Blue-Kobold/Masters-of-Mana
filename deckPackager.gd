@@ -6,6 +6,11 @@ var imgcon
 var Roller = load("res://CardRoller.gd").new()
 var exampleGrid
 
+var preDir = "res://"
+var deckName = "TestDeckOfCards"
+
+var CardIDSet
+
 var DeckDictionary = {
 	"Gravity": 0.5,
 	"PlayArea": 0.5,
@@ -58,12 +63,22 @@ func _ready():
 	#CreateDeck(number_of_cards_to_gen)
 	pass # Replace with function body.
 
+func SetDir(path):
+	preDir = path
+
+func setDeckName(val):
+	deckName = val
+
+func SetIDVal(val):
+	CardIDSet = val
+
 func CreateDeck(cardCount):
 	
-	var preDir = "res://"
-	var deckName = "TestDeckOfCards"
 	var _dir 
-	var CardIDSet = (RandomNumberGenerator.new().randi_range(1000,9999))
+	
+	if(CardIDSet == null):
+		CardIDSet = (RandomNumberGenerator.new().randi_range(1000,9999))
+	
 	if DirAccess.dir_exists_absolute(preDir + "/" + deckName) != true:
 		
 		_dir = DirAccess.make_dir_absolute(preDir + "/" + deckName)
@@ -121,10 +136,11 @@ func CreateDeck(cardCount):
 
 
 func PackageExistingCards(ExistingCards):
-	var preDir = "res://"
-	var deckName = "TestDeckOfCards"
 	var _dir 
-	var CardIDSet = (RandomNumberGenerator.new().randi_range(1000,9999))
+	
+	if(CardIDSet == null):
+		CardIDSet = (RandomNumberGenerator.new().randi_range(1000,9999))
+	
 	if DirAccess.dir_exists_absolute(preDir + "/" + deckName) != true:
 		
 		_dir = DirAccess.make_dir_absolute(preDir + "/" + deckName)
