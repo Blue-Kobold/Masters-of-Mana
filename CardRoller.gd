@@ -306,14 +306,14 @@ var customCardRarity
 var deckPackager
 
 func _ready():
-	deckPackager = $"../../DeckPackager"
+	deckPackager = $"../../DeckPackager".get_script()
 	pass
 	
 func _on_pressed():
-	var textInput = $"../HBoxContainer3/NumberOfCardsToGenerate".get_text()
+	var textInput = $"../NumberOfCardsContainer/NumberOfCardsToGenerate".get_text()
 	number_of_cards_to_gen = int(textInput)
 	
-	deckPackager.setDir($"../SelectedDir".get_text())
+	deckPackager.SetDir($"../SelectedDir".get_text())
 	deckPackager.setDeckName($"../DeckName".get_text())
 	deckPackager.SetIDVal()
 	deckPackager.PackageExistingCards(generate_card(number_of_cards_to_gen))
