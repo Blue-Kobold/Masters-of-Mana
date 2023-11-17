@@ -40,7 +40,7 @@ class ImageWithData:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	OpenCardForge()
+	#OpenCardForge()
 	pass
 
 func OpenCardForge():
