@@ -58,7 +58,6 @@ var ObjectDictionaryTemplate = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	imgcon = $ImageConstructor
 	exampleGrid = $TextureRect
 	#CreateDeck(number_of_cards_to_gen)
 	pass # Replace with function body.
@@ -84,7 +83,7 @@ func CreateDeck(cardCount):
 		_dir = DirAccess.make_dir_absolute(preDir + "/" + deckName)
 	_dir = preDir + "/" + deckName
 	
-	var CardBackURL = imgcon.AddBackCard(_dir)
+	var CardBackURL = ImageConstructor.AddBackCard(_dir)
 	
 	var GeneratedCards = Roller.generate_card(cardCount)
 
@@ -101,7 +100,7 @@ func CreateDeck(cardCount):
 		i.merge({"dir":_dir})
 		i.merge({"deck Name":deckName})
 		i.merge({"cardSet":CardIDSet})
-		i.merge({"URL":await imgcon.GenerateSingle(i)})
+		i.merge({"URL":await ImageConstructor.GenerateSingle(i)})
 		
 		cardInstance["Nickname"] = str(i["Rarity"] + " " + i["Card Type"])
 		cardInstance["Description"] = str(i["Primary Affinity"]) + " " + str(i["Secondary Affinity"])
@@ -128,7 +127,7 @@ func CreateDeck(cardCount):
 	
 	var outputFile = FileAccess.open((_dir + "//CardGrid.json"),FileAccess.WRITE)
 	
-	imgcon.cardForge.queue_free()
+	ImageConstructor.cardForge.queue_free()
 	
 	outputFile.store_string(JSON.stringify(DeckDictionary,"   "))
 	
@@ -146,7 +145,7 @@ func PackageExistingCards(ExistingCards):
 		_dir = DirAccess.make_dir_absolute(preDir + "/" + deckName)
 	_dir = preDir + "/" + deckName
 	
-	var CardBackURL = imgcon.AddBackCard(_dir)
+	var CardBackURL = ImageConstructor.AddBackCard(_dir)
 
 	var collectionofObjects = []
 	var cardInstance = {}
@@ -161,12 +160,12 @@ func PackageExistingCards(ExistingCards):
 		i.merge({"dir":_dir})
 		i.merge({"deck Name":deckName})
 		i.merge({"cardSet":CardIDSet})
-		i.merge({"URL":await imgcon.GenerateSingle(i)})
+		i.merge({"URL":await ImageConstructor.GenerateSingle(i)})
 		
 		cardInstance["Nickname"] = str(i["Rarity"] + " " + i["Card Type"])
 		cardInstance["Description"] = str(i["Primary Affinity"]) + " " + str(i["Secondary Affinity"])
 		
-		var cardNumber = i["cardSet"]+index
+		var cardNumber = int(i["cardSet"])+index
 		
 		cardInstance["CustomDeck"].merge({cardNumber:{}})
 		cardInstance["CustomDeck"][cardNumber].merge({"FaceURL":i["URL"]})
@@ -188,7 +187,7 @@ func PackageExistingCards(ExistingCards):
 	
 	var outputFile = FileAccess.open((_dir + "//CardGrid.json"),FileAccess.WRITE)
 	
-	imgcon.cardForge.queue_free()
+	ImageConstructor.cardForge.queue_free()
 	
 	outputFile.store_string(JSON.stringify(DeckDictionary,"   "))
 	
