@@ -18,4 +18,5 @@ config/icon="res://icon.svg"
 [autoload]
 
 CardRoller="*res://CardRoller.gd"
-DeckPackager="*res://deckPackager.gd"
+DeckPackager="*res://DeckPackager.gd"
+ImageConstructor="*res://ImageConstructor.gd"
