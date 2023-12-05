@@ -14,3 +14,8 @@ config/name="MoM"
 run/main_scene="res://main_screen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+CardRoller="*res://CardRoller.gd"
+DeckPackager="*res://deckPackager.gd"

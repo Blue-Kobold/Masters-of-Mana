@@ -302,21 +302,15 @@ var drawback_keywords_by_affinity : Dictionary = {
 
 var itemsToGenerateMenuSelection
 var customCardRarity
-
-var deckPackager
-
-func _ready():
-	deckPackager = $"../../DeckPackager".get_script()
-	pass
 	
 func _on_pressed():
 	var textInput = $"../NumberOfCardsContainer/NumberOfCardsToGenerate".get_text()
 	number_of_cards_to_gen = int(textInput)
 	
-	deckPackager.SetDir($"../SelectedDir".get_text())
-	deckPackager.setDeckName($"../DeckName".get_text())
-	deckPackager.SetIDVal()
-	deckPackager.PackageExistingCards(generate_card(number_of_cards_to_gen))
+	DeckPackager.SetDir($"../SelectedDir".get_text())
+	DeckPackager.setDeckName($"../DeckName".get_text())
+	DeckPackager.SetIDVal($"../SetID".get_text())
+	DeckPackager.PackageExistingCards(generate_card(number_of_cards_to_gen))
 	
 func generate_card(cardCount):
 	
