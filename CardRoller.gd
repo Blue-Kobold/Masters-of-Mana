@@ -310,7 +310,7 @@ func _on_pressed():
 	DeckPackager.SetDir($"../SelectedDir".get_text())
 	DeckPackager.setDeckName($"../DeckName".get_text())
 	DeckPackager.SetIDVal($"../SetID".get_text())
-	DeckPackager.PackageExistingCards(generate_card(number_of_cards_to_gen))
+	DeckPackager.CreateDeckFromCards(generate_card(number_of_cards_to_gen))
 	
 func generate_card(cardCount):
 	

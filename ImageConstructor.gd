@@ -31,6 +31,7 @@ var frgText
 var frgRules
 var frgPow
 var frgGrd
+var frgOutCtx
 
 class ImageWithData:
 	var individualCards = []
@@ -62,6 +63,7 @@ func OpenCardForge():
 	frgRules = cardForge.get_child(8).get_child(0)
 	frgPow = cardForge.get_child(9).get_child(0)
 	frgGrd = cardForge.get_child(10).get_child(0)
+	frgOutCtx = cardForge.get_child(11)
 	
 	cardForge.visible = true
 	cardForge.position = Vector2(6000,45)
@@ -84,6 +86,10 @@ func GenerateSingle(targetCard):
 	OpenCardForge()
 	
 	cardForge.title = "Smithin' card number " + str(targetCard["index"])
+	if targetCard["URL"] != "":
+		frgctx.texture = ImageTexture.create_from_image(targetCard["URL"])
+	if targetCard["OverURL"] != "":
+		frgOutCtx.texture = ImageTexture.create_from_image(targetCard["OverURL"])
 	
 	frgBack.texture = ImageTexture.create_from_image(cardFront)
 	
@@ -123,7 +129,7 @@ func GenerateSingle(targetCard):
 			frgPips.texture = ImageTexture.create_from_image(manapip3)
 	
 	
-	var titleStr = targetCard["Card Type"]
+	var titleStr = targetCard["Name"]
 	var textStr = targetCard["Primary Affinity"] + "-" + targetCard["Secondary Affinity"]
 	var rulesStr = ""
 	var powStr = ""
@@ -136,7 +142,7 @@ func GenerateSingle(targetCard):
 		grdStr = "Health:" + str(targetCard["Health"])
 	
 	for i in  targetCard["Keywords"]:
-		rulesStr = i + "\n "
+		rulesStr += i + "\n"
 	
 	frgTitle.text = titleStr
 	frgText.text = textStr

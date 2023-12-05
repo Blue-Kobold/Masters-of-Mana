@@ -20,3 +20,8 @@ config/icon="res://icon.svg"
 CardRoller="*res://CardRoller.gd"
 DeckPackager="*res://DeckPackager.gd"
 ImageConstructor="*res://ImageConstructor.gd"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"

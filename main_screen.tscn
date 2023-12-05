@@ -14,6 +14,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
 script = ExtResource("1_avh4f")
 
 [node name="BGRect" type="ColorRect" parent="."]
@@ -125,6 +128,7 @@ rotation = 0.908238
 texture = ExtResource("2_86o2s")
 
 [node name="DeckPackager" parent="." instance=ExtResource("3_tfdwx")]
+position = Vector2(46, -1)
 
 [node name="GrayRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -226,6 +230,7 @@ text_overrun_behavior = 3
 layout_mode = 2
 text = "Generate Cards!"
 script = ExtResource("1_svu8i")
+number_of_cards_to_gen = null
 
 [node name="CustomOptions" type="Label" parent="MenuContainer"]
 layout_mode = 2
@@ -265,6 +270,32 @@ text = "Relic"
 layout_mode = 2
 text = "Ascendant"
 
+[node name="Button2" type="Button" parent="MenuContainer"]
+layout_mode = 2
+text = "Package Cards!"
+script = ExtResource("1_svu8i")
+number_of_cards_to_gen = null
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 1654.0
+offset_bottom = 1290.0
+scale = Vector2(0.5, 0.5)
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(375, 525)
+layout_mode = 2
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 100
+columns = 2
+
+[connection signal="text_changed" from="MenuContainer/DeckName" to="DeckPackager" method="_on_deck_name_text_changed"]
+[connection signal="text_changed" from="MenuContainer/SetID" to="DeckPackager" method="SetIDVal"]
 [connection signal="dir_selected" from="MenuContainer/OutputPathContainer/FileDialog" to="." method="_on_file_dialog_dir_selected"]
+[connection signal="dir_selected" from="MenuContainer/OutputPathContainer/FileDialog" to="DeckPackager" method="_on_file_dialog_dir_selected"]
 [connection signal="pressed" from="MenuContainer/OutputPathContainer/FileDialogButton" to="." method="_on_file_dialog_button_pressed"]
 [connection signal="pressed" from="MenuContainer/Button" to="MenuContainer/Button" method="_on_pressed"]
+[connection signal="pressed" from="MenuContainer/Button2" to="DeckPackager" method="_on_button_2_pressed"]

@@ -1,0 +1,184 @@
+[gd_scene load_steps=8 format=3 uid="uid://bit3o7bhdkoqe"]
+
+[ext_resource type="Script" path="res://Card.gd" id="1_uyol6"]
+[ext_resource type="Texture2D" uid="uid://dhs5hjpdif3p7" path="res://textures/CardComponents/CardInnerContent/ExampleGuy.png" id="2_2gcr0"]
+[ext_resource type="Texture2D" uid="uid://banljaihcyvbg" path="res://textures/CardComponents/card_background_for_color_shifting_empty.png" id="3_bq68t"]
+[ext_resource type="Texture2D" uid="uid://c0in5k60yecyo" path="res://textures/CardComponents/cardfront_relic3.png" id="4_kqejc"]
+[ext_resource type="Texture2D" uid="uid://dirfwtrvvp6gn" path="res://textures/CardComponents/3_slot.png" id="5_4glwy"]
+[ext_resource type="Texture2D" uid="uid://b0tuhnjasg50l" path="res://textures/CardComponents/screws.png" id="6_sibd5"]
+[ext_resource type="Texture2D" uid="uid://dpjpjevav6cg2" path="res://textures/CardComponents/CardInnerContent/ExampleGuy Reachin' out.png" id="7_ll674"]
+
+[node name="CardInstance" type="Control"]
+clip_contents = true
+custom_minimum_size = Vector2(750, 1050)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 750.0
+offset_bottom = 1050.0
+script = ExtResource("1_uyol6")
+
+[node name="InnerCardContent" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 750.0
+offset_bottom = 1050.0
+texture = ExtResource("2_2gcr0")
+
+[node name="CardBase2" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_right = 750.0
+offset_bottom = 1050.0
+texture = ExtResource("3_bq68t")
+
+[node name="Plate2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 750.0
+offset_bottom = 1050.0
+texture = ExtResource("4_kqejc")
+
+[node name="Pips2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 750.0
+offset_bottom = 1050.0
+texture = ExtResource("5_4glwy")
+
+[node name="Screws2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 750.0
+offset_bottom = 1050.0
+texture = ExtResource("6_sibd5")
+
+[node name="SetIcon2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 750.0
+offset_bottom = 1050.0
+texture = ExtResource("6_sibd5")
+
+[node name="NameText" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 31.0
+offset_top = -511.5
+offset_right = 657.415
+offset_bottom = -448.5
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 40
+text = "12345678901234567890123456"
+placeholder_text = "12345678901234567890123456"
+max_length = 26
+
+[node name="TypeText" type="Label" parent="."]
+layout_direction = 2
+layout_mode = 0
+offset_left = 35.0
+offset_top = 450.0
+offset_right = 715.0
+offset_bottom = 942.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "1234567890123456789012345678901234567890"
+max_lines_visible = 1
+visible_characters = 40
+text_direction = 1
+
+[node name="RulesText" type="Label" parent="."]
+layout_direction = 2
+layout_mode = 0
+offset_left = 35.0
+offset_top = 535.0
+offset_right = 715.0
+offset_bottom = 1027.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "1234567890123456789012345678901234567890
+2234567890123456789012345678901234567890
+3234567890123456789012345678901234567890
+4234567890123456789012345678901234567890
+5234567890123456789012345678901234567890
+6234567890123456789012345678901234567890
+7234567890123456789012345678901234567890
+8234567890123456789012345678901234567890
+9234567890123456789012345678901234567890
+"
+max_lines_visible = 9
+text_direction = 1
+
+[node name="PowerText" type="Label" parent="."]
+layout_direction = 2
+layout_mode = 0
+offset_left = 35.0
+offset_top = 972.5
+offset_right = 314.0
+offset_bottom = 1464.5
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 45
+text = "Power:99999"
+max_lines_visible = 9
+text_direction = 1
+
+[node name="DefenseText" type="Label" parent="."]
+layout_direction = 2
+layout_mode = 0
+offset_left = 440.0
+offset_top = 972.5
+offset_right = 728.0
+offset_bottom = 1464.5
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 45
+text = "Health:99999"
+max_lines_visible = 9
+text_direction = 1
+
+[node name="OuterCardContent" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 750.0
+offset_bottom = 1050.0
+mouse_filter = 2
+texture = ExtResource("7_ll674")
+
+[node name="InnerImageButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.055
+anchor_top = -0.008
+anchor_right = -0.055
+anchor_bottom = -0.008
+offset_left = 46.25
+offset_top = 93.4
+offset_right = 221.25
+offset_bottom = 128.4
+text = "Change  Inner Image"
+
+[node name="OuterImageButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.055
+anchor_top = -0.008
+anchor_right = -0.055
+anchor_bottom = -0.008
+offset_left = 616.25
+offset_top = 93.4
+offset_right = 791.25
+offset_bottom = 128.4
+text = "Change  Outer Image"
+
+[connection signal="text_changed" from="NameText" to="." method="_on_name_text_text_changed"]
+[connection signal="pressed" from="InnerImageButton" to="." method="_on_inner_image_button_pressed"]
+[connection signal="pressed" from="OuterImageButton" to="." method="_on_outer_image_button_pressed"]
